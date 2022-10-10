@@ -1,22 +1,33 @@
 import Card from './components/Card'
 import Header from './components/Header';
 import Drawer from './components/Drawer';
+import React from 'react';
 
-const arr = [
-  {name: 'Мужские Кроссовки Nike Blazer Mid Suede', price: 12999, imageUrl: '/img/sneakers/nike-blazer-mid.png'},
-  {name: 'Мужские Кроссовки Puma X Future Rider', price: 13999, imageUrl: '/img/sneakers/puma-x.png'},
-  {name: 'Мужские Кроссовки Nike Blazer Mid ', price: 8999, imageUrl: '/img/sneakers/nike-blazer.png'},
-  {name: 'Мужские Кроссовки Nike Air Max 270', price: 16999, imageUrl: '/img/sneakers/nike-air-max-270.png'},
-];
+
+
 
 function App() {
+  const [items, setItems] = React.useState([]);
+
+  const [cartOpened, setCartOpened] = React.useState(false);
+
+  React.useEffect(() => {
+    fetch('https://63447dc6dcae733e8fe04776.mockapi.io/items')
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        setItems(json);
+      });
+  }, []);
+ 
   return (
     <div className='wrapper clear'>
-      <Drawer/>
-      <Header/>
+      {cartOpened && <Drawer onClose={() => setCartOpened(false)} />}
+      <Header onClickCart={() => setCartOpened(true)} />
 
       <div className='content p-40'>
-        <div className='d-flex align center justify-between mb-40'>
+        <div className='d-flex align-center justify-between mb-40 all'>
           <h1>Все кроссовки</h1>
 
           <div className='search-block d-flex'>
@@ -26,10 +37,14 @@ function App() {
 
         </div>
 
-        <div className='d-flex'>
+        <div className='d-flex flex-wrap '>
 
-          {arr.map((obj) =>(
-            <Card title= {obj.name} price={obj.price} imageUrl={obj.imageUrl}/>
+          {items.map((obj) =>(
+            <Card key={obj.title.toString()} 
+            title= {obj.title} 
+            price={obj.price} 
+            imageUrl={obj.imageUrl}
+            />
           ))}
           
         </div>

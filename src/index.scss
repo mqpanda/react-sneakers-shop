@@ -41,60 +41,7 @@ header{
   }
 }
 
-.card{
-  border: 1px solid #f3f3f3;
-  padding: 30px;
-  width: 220px;
-  border-radius: 40px;
-  margin: 0px 20px;
-  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 
-  &:first-child{
-    margin-left: 0;
-  }
-
-  &:last-child{
-    margin-right: 0;
-  }
-  
-
-
-  &:hover{
-    box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.06);
-    transform: translateY(-5px);
-  }
-
-  span{
-    font-size: 13px;
-    opacity: 0.5;
-    text-transform: uppercase;
-  } 
-
-  b{
-    font-size: 13px;
-  }
-
-  h5{
-    font-weight: 400;
-    font-size: 14px;
-  }
-  
-  .favorite{
-    position: absolute;
-    cursor: pointer;
-  }
-}
-
-.button{
-  background: #FFFFFF;
-  border: 1px solid #F2F2F2;
-  box-sizing: border-box;
-  border-radius: 8px;
-  height: 32px;
-  width: 32px;
-  cursor: pointer;
-
-}
 
 .search-block{
   border: 1px solid #f3f3f3;
@@ -110,6 +57,9 @@ header{
   }
 }
 
+.all{
+  margin: 0 15px;
+}
 .overlay{
   position: absolute;
   left:0;
