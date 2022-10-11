@@ -8,7 +8,7 @@ import React from 'react';
 
 function App() {
   const [items, setItems] = React.useState([]);
-
+  const [cartItems, setCartItems] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
@@ -20,14 +20,18 @@ function App() {
         setItems(json);
       });
   }, []);
+
+  const onAddToCart = (obj) => {
+    setCartItems(prev => [... prev, obj]);
+  }
  
   return (
     <div className='wrapper clear'>
-      {cartOpened && <Drawer onClose={() => setCartOpened(false)} />}
+      {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}
       <Header onClickCart={() => setCartOpened(true)} />
 
       <div className='content p-40'>
-        <div className='d-flex align-center justify-between mb-40 all'>
+        <div className='d-flex align-center justify-between mb-40 m-card'>
           <h1>Все кроссовки</h1>
 
           <div className='search-block d-flex'>
@@ -39,11 +43,13 @@ function App() {
 
         <div className='d-flex flex-wrap '>
 
-          {items.map((obj) =>(
-            <Card key={obj.title.toString()} 
-            title= {obj.title} 
-            price={obj.price} 
-            imageUrl={obj.imageUrl}
+          {items.map((item) =>(
+            <Card key={item.title.toString()} 
+            title= {item.title} 
+            price={item.price} 
+            imageUrl={item.imageUrl}
+            onFavorite={() => console.log('Добавили в избранное')}
+            onPlus={(obj) => onAddToCart(obj)}
             />
           ))}
           
