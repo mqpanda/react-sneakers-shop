@@ -18,7 +18,7 @@
     return(
         <div className={styles.card}>
             <div className={styles.favorite} onClick={onFavorite}>
-                <img onClick={onClickLiked} src={isUnliked ? '/img/heart-liked.svg' : '/img/heart-unliked.svg'} alt='Unliked'/>
+                <img onClick={onClickLiked} src={isUnliked ? '/img/heart-liked.svg' : '/img/heart-unliked.png'} alt='Unliked'/>
             </div>
             <img className={styles.image} width={133} height={112} src={imageUrl} alt='Sneakers'></img>
            
